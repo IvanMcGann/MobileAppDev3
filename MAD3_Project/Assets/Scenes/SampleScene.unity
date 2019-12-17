@@ -607,6 +607,53 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 725461816}
   m_CullTransparentMesh: 0
+--- !u!1 &735057942
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 735057943}
+  - component: {fileID: 735057944}
+  m_Layer: 9
+  m_Name: LineOfSight
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &735057943
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 735057942}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1215269836}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!58 &735057944
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 735057942}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 5
 --- !u!1 &1078590390
 GameObject:
   m_ObjectHideFlags: 0
@@ -617,7 +664,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1078590391}
   - component: {fileID: 1078590392}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: EnemySprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -696,11 +743,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1215269836}
-  - component: {fileID: 1215269839}
   - component: {fileID: 1215269838}
   - component: {fileID: 1215269837}
   - component: {fileID: 1215269840}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: EnemyObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -719,6 +765,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1078590391}
+  - {fileID: 735057943}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -759,22 +806,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!58 &1215269839
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1215269835}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 4
 --- !u!114 &1215269840
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -790,6 +821,8 @@ MonoBehaviour:
   speed: 2
   hasTarget: 0
   target: {fileID: 0}
+  currentWeapon: {fileID: 11400000, guid: fe653bd427dcbaa449ff296d2c9b9343, type: 2}
+  hitpoints: 100
 --- !u!1 &1730638815
 GameObject:
   m_ObjectHideFlags: 0
@@ -866,7 +899,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1892938186}
   - component: {fileID: 1892938188}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: PlayerSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1105,7 +1138,7 @@ GameObject:
   - component: {fileID: 2108591148}
   - component: {fileID: 2108591149}
   - component: {fileID: 2108591150}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: PlayerObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1161,8 +1194,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 10
-  hitPoints: 100
   currentWeapon: {fileID: 11400000, guid: fe653bd427dcbaa449ff296d2c9b9343, type: 2}
+  hitpoints: 100
 --- !u!58 &2108591150
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -1190,6 +1223,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: BulletObject
+      objectReference: {fileID: 0}
+    - target: {fileID: 6409383178175477214, guid: ad00075b1af4ccc47936bbf66903a5aa,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 6409383178175477215, guid: ad00075b1af4ccc47936bbf66903a5aa,
         type: 3}
@@ -1260,6 +1298,11 @@ PrefabInstance:
         type: 3}
       propertyPath: speed
       value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 6409383178357334205, guid: ad00075b1af4ccc47936bbf66903a5aa,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ad00075b1af4ccc47936bbf66903a5aa, type: 3}

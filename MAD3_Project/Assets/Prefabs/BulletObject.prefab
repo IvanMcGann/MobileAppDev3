@@ -11,7 +11,8 @@ GameObject:
   - component: {fileID: 6409383178175477215}
   - component: {fileID: 6409383178175477208}
   - component: {fileID: 6409383178175477209}
-  m_Layer: 0
+  - component: {fileID: -3935997619287139109}
+  m_Layer: 8
   m_Name: BulletObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -70,6 +71,22 @@ MonoBehaviour:
   targetVector: {x: 0, y: 0, z: 0}
   lifetime: 10
   damage: 10
+--- !u!58 &-3935997619287139109
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6409383178175477214}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.05
 --- !u!1 &6409383178357334205
 GameObject:
   m_ObjectHideFlags: 0
@@ -80,7 +97,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6409383178357334206}
   - component: {fileID: 6409383178357334207}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: BulletSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}

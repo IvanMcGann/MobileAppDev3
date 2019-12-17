@@ -2,10 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class Player : MonoBehaviour, IEntityHealth
 {
     public float moveSpeed = 5f;
-    public float hitPoints = 100f;
     private Rigidbody2D rb;
 
 
@@ -16,6 +15,10 @@ public class Player : MonoBehaviour
     private bool reloading = false;      // is reloading
 
     //public GameObject bulletPrefab;     // the prefab of our bullet
+
+    public float hitpoints = 100f; // renamed this from hitPoints
+
+    private bool isDead = false;
 
     // Start is called before the first frame update
     void Start()
@@ -92,14 +95,36 @@ public class Player : MonoBehaviour
             {    // this is our last bullet
                 startReload();      // start reloading
             }
-            Vector3 pointMouseVector = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+           Vector3 pointMouseVector = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             pointMouseVector.z = 0; // set z to 0, this is 2D
             GameObject go = Instantiate(currentWeapon.bulletPrefab, gameObject.transform.position, Quaternion.identity);
             Bullet bullet = go.GetComponent<Bullet>();
+            go.layer = 8; // set out bullet to the player layer
             Vector3 targetVector = pointMouseVector - gameObject.transform.position;
             bullet.targetVector = targetVector;
             lastFired = currentWeapon.fireRate; // we just fired, add a delay with lastFired timer
             magazine -= 1;  // bye bye bullet
         }
     }
+
+
+
+    public void IGainHealth(float health)
+    {
+        // do nothing yet
+    }
+
+    public void ITakeDamage(float damage)
+    {
+        hitpoints -= damage;
+        if (hitpoints <= 0)
+        {
+            isDead = true;
+            Debug.Log("Our Player died, do nothing for now");
+        }
+    }
+
+
+
 }
