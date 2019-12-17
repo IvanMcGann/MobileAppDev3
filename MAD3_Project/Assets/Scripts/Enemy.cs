@@ -58,4 +58,5 @@ public class Enemy : MonoBehaviour
         // add force to my rigid body to make me move
         rb.AddForce((target.transform.position - transform.position).normalized * speed);
     }
+
 }

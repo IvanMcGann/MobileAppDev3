@@ -29,5 +29,4 @@ public class Bullet : MonoBehaviour
             Destroy(gameObject);    // kill me
         }
     }
-
 }
