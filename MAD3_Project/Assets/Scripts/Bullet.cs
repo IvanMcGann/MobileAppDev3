@@ -15,7 +15,7 @@ public class Bullet : MonoBehaviour
         Rigidbody2D rb = gameObject.GetComponentInChildren<Rigidbody2D>();
         // add force 
         rb.AddForce(targetVector.normalized * speed);
-        AudioManager.instance.PlaySound("Laser");//audio for shooting
+        AudioManager.instance.PlaySound("laser"); //audio for shooting
     }
 
 
