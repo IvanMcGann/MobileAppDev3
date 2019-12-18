@@ -7,12 +7,12 @@ public class AudioManager : MonoBehaviour
     public Sound[] sounds;      // store all our sounds
     public Sound[] playlist;    // store all our music
 
-    private int currentPlayingIndex = 999; // set high to signify no song playing
+    private int currentPlayingIndex = 999; 
 
-    // a play music flag so we can stop playing music during cutscenes etc
+    // a play music flag so we can stop playing music 
     private bool shouldPlayMusic = false;
 
-    public static AudioManager instance; // will hold a reference to the first AudioManager created
+    public static AudioManager instance; // will hold a reference to the first AudioManager made
 
     private float mvol; // Global music volume
     private float evol; // Global effects volume
@@ -29,15 +29,15 @@ public class AudioManager : MonoBehaviour
 
         if (instance == null)
         {     // if the instance var is null this is first AudioManager
-            instance = this;        //save this AudioManager in instance 
+            instance = this;        //save this instance of AudioManager
         }
         else
         {
-            Destroy(gameObject);    // this isnt the first so destroy it
+            Destroy(gameObject);    
             return;                 // since this isn't the first return so no other code is run
         }
 
-        DontDestroyOnLoad(gameObject); // do not destroy me when a new scene loads
+        DontDestroyOnLoad(gameObject); // do not destroy objects when a new scene loads
 
         // get preferences
         mvol = PlayerPrefs.GetFloat("MusicVolume", 0.75f);
@@ -53,11 +53,11 @@ public class AudioManager : MonoBehaviour
     {
         foreach (Sound s in sounds)
         {   // loop through each music/effect
-            s.source = gameObject.AddComponent<AudioSource>(); // create anew audio source(where the sound splays from in the world)
+            s.source = gameObject.AddComponent<AudioSource>(); // create new audio source
             s.source.clip = s.clip;     // the actual music/effect clip
-            s.source.volume = s.volume * volume; // set volume based on parameter
-            s.source.pitch = s.pitch;   // set the pitch
-            s.source.loop = s.loop;     // should it loop
+            s.source.volume = s.volume * volume; // set volume 
+            s.source.pitch = s.pitch;   // set pitch
+            s.source.loop = s.loop;     // loop music
         }
     }
 
@@ -103,10 +103,10 @@ public class AudioManager : MonoBehaviour
         {
             currentPlayingIndex++; // set next index
             if (currentPlayingIndex >= playlist.Length)
-            { //have we went too high
+            { 
                 currentPlayingIndex = 0; // reset list when max reached
             }
-            playlist[currentPlayingIndex].source.Play(); // play that funky music
+            playlist[currentPlayingIndex].source.Play(); // play music
         }
     }
 

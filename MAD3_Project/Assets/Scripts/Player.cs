@@ -12,13 +12,10 @@ public class Player : MonoBehaviour, IEntityHealth
     private float lastFired = 0f;       // last shot time
     private float reloadTimer = 0f;     // time until reload finsihes
     private int magazine;               // current bullet count
-    private bool reloading = false;      // is reloading
-
-    //public GameObject bulletPrefab;     // the prefab of our bullet
+    private bool reloading = false;      // is reloading y/n
 
     public float hitpoints = 100f; // renamed this from hitPoints
-
-    private bool isDead = false;
+    private bool isDead = false; // not yet implemented
 
     // Start is called before the first frame update
     void Start()
@@ -36,16 +33,16 @@ public class Player : MonoBehaviour, IEntityHealth
     {
         if (Input.GetMouseButton(0))
         {
-            fire();     // do us a firing!
+            fire();     // shoot with left mouse button
         }
-        lastFired -= Time.deltaTime;        // reduce last fired Timer
+        lastFired -= Time.deltaTime;        // reduce the last fired Timer
         if (reloading)
-        {                    // check if were reloading
-            reloadTimer -= Time.deltaTime;  // lower reload timer
-            if (reloadTimer <= 0)
-            {         // have we reloaded long enough
+        {                    // check if player is reloading
+            reloadTimer -= Time.deltaTime;  // lower the reload timer
+            if (reloadTimer <= 0)  // have we reloaded long enough
+            {        
                 reloading = false;          // reset reload
-                magazine = currentWeapon.magazineCapacity;// refill our pew pew machine
+                magazine = currentWeapon.magazineCapacity;// refill ammunition
             }
         }
     }
@@ -112,7 +109,7 @@ public class Player : MonoBehaviour, IEntityHealth
 
     public void IGainHealth(float health)
     {
-        // do nothing yet
+        // does nothing yet
     }
 
     public void ITakeDamage(float damage)

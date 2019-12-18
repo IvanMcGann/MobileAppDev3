@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour, IEntityHealth
 {
-    public float speed = 2f;    // Follow speed
+    public float speed = 2f;    // Follow speed of enemy
 
     [HideInInspector]
     public bool hasTarget = false;  // do I have a target to move towards
@@ -54,8 +54,6 @@ public class Enemy : MonoBehaviour, IEntityHealth
     private void shoot()
     {
         // same as player (ideally we would have this in its own class(like entityWeapon) but for now
-        // we will just add it here and give it a TODO
-        // TODO move into own class as this is shared between player and enemy
         lastFired -= Time.deltaTime;
         if (reloading)
         {
@@ -97,7 +95,7 @@ public class Enemy : MonoBehaviour, IEntityHealth
         reloadTimer = currentWeapon.reloadSpeed;
     }
 
-    // if anything starts to collide with me I will run this method
+    // if anything starts to collide with enemy this method will run
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.name.Equals("PlayerObject"))
@@ -119,13 +117,13 @@ public class Enemy : MonoBehaviour, IEntityHealth
 
     private void follow(Transform target)
     {
-        // add force to my rigid body to make me move
+        // add force to rigid body move enemy
         rb.AddForce((target.transform.position - transform.position).normalized * speed);
     }
 
     public void IGainHealth(float health)
     {
-        // do nothing yet
+        // not yet implemented
     }
 
     public void ITakeDamage(float damage)

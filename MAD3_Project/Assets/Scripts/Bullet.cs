@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    public int speed = 50;          // The speed our bullet travels
+    public int speed = 50;          // The speed of the bullet
     public Vector3 targetVector;    // the direction it travels
-    public float lifetime = 10f;     // how long it lives before destroying itself
+    public float lifetime = 10f;     // how long it lives before destroying
     public float damage = 10;       // how much damage this projectile causes
 
     void Start()
@@ -37,7 +37,7 @@ public class Bullet : MonoBehaviour
         if (itd != null)
         {
             itd.ITakeDamage(damage);
-            lifetime = 0f; // I did my part. Join the mobile infantry today!
+            lifetime = 0f;
         }
 
     }

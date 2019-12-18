@@ -7,6 +7,6 @@ public interface IEntityHealth
     // a method for taking damage
     void ITakeDamage(float damage);
 
-    // a method for gaining health
+    // a method for gaining health, not implemented
     void IGainHealth(float healthAmount);
 }

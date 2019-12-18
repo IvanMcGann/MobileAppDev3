@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // do we have enough enemies
+        // Avoid spawning too many enemies 
         if (currentEnemyCount < enemyLimit)
         {
             // no, no we do not! so create one.
@@ -23,11 +23,11 @@ public class GameManager : MonoBehaviour
                 0);                                             // z position 
 
             GameObject go = Instantiate(enemyPrefab, spawnLocation, Quaternion.identity);
-            currentEnemyCount += 1; // we made one, so note it down in our var
+            currentEnemyCount += 1; // we made one, so note it down in our count 
         }
     }
 
-    // we got one! pew pew
+    // remove destroyed enemy
     public void enemyDied()
     {
         currentEnemyCount--;

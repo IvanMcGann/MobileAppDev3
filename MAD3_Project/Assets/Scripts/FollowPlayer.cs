@@ -10,7 +10,7 @@ public class FollowPlayer : MonoBehaviour
 
     void Start()
     {
-        // get the currentr offset between player and camarea positions
+        // get the current offset between player and camera position
         offset = transform.position - playerObject.transform.position;
     }
 
